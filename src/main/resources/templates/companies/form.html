@@ -1,0 +1,50 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout/layout :: head"></head>
+<body>
+
+
+	<header th:replace="/layout/layout :: header"></header>
+
+
+
+
+	<div class="container">
+
+		<h1 th:text="${title}"></h1>
+
+
+
+		<form th:action="@{/companies/form}" th:object="${company}" method="post">
+			
+			<div class="form-group">
+				<label for="name">Name</label> <input type="text"
+					class="form-control" th:errorclass="'form-control is-invalid'" th:field="*{name}" aria-describedby="nameHelp"
+					placeholder="Enter name"> <small
+					th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+					class="form-text text-danger"></small>
+			</div>
+
+
+			<div class="form-group">
+				<label for="email">Email</label> <input type="text"
+					class="form-control" th:errorclass="'form-control is-invalid'" th:field="*{email}"
+					aria-describedby="emailHelp" placeholder="Enter email"> <small
+					th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+					class="form-text text-danger"></small>
+			</div>
+
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+			
+			<input type="hidden" th:field="*{companyId}" />
+			<input type="hidden" th:field="*{createAt}" />
+		</form>
+
+
+
+	</div>
+	
+<footer th:replace="/layout/layout :: footer"></footer>
+</body>
+</html>
